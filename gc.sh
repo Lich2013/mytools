@@ -1,4 +1,4 @@
-path='/usr/local/Cellar'
+path='/Users/Lich/www'
 
 for i in `ls $path`; 
 do

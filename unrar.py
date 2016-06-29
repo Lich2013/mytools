@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 #!coding:utf-8
 import os
-file = "/Users/Lich/Downloads/resume.lich2013.com_sha256_cn.zip"
+path = './'
+files = os.listdir(path)
 list = ['⑨',
 '四散的尘埃',
 'acg和谐区',
@@ -65,18 +66,18 @@ list = ['⑨',
 'inori',
 'BQ510',
 '120505478',
-'社会主义歼星炮 ',
+'社会主义歼星炮',
 '技术宅',
 '通宵狂魔技术宅']
-type = file.split('.')[-1]
-uncompress = {'zip': lambda password: 'unzip ' + '-P ' + password + ' "' + file + '"',
-			  'rar': lambda password: 'unrar x "' + file + '" -p' + password + ' -y'}
+files = [(file, file.split('.')[-1]) for file in files]
+uncompress = {'zip': lambda password, file: 'unzip ' + '-P ' + password + ' "' + file + '"',
+			  'rar': lambda password, file: 'unrar x "' + file + '" -p' + password + ' -y',
+			  }
 for x in list:
-	commond = uncompress[type](x)
-	print commond
-	os.system(commond)
+	for file, type in files:
+		commond = uncompress.get(type, lambda password, file: 'gg')(x, file)
+		if commond != 'gg':
+			print commond
+			os.system(commond)
 
 exit(0)
-
-
-
